@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MyToDoList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="MyToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -66,6 +66,9 @@
                                                 <state key="normal" title="Login">
                                                     <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 </state>
+                                                <connections>
+                                                    <segue destination="fdx-p5-5Es" kind="show" identifier="tasksSegue" id="x9m-LB-cl5"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pz7-Fs-pN0">
                                                 <rect key="frame" x="0.0" y="59" width="254" height="39"/>
@@ -100,10 +103,64 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="sTD-RZ-RFB"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="113"/>
+            <point key="canvasLocation" x="1188" y="113"/>
+        </scene>
+        <!--List View Controller-->
+        <scene sceneID="67k-tf-k7K">
+            <objects>
+                <viewController id="MCh-VC-agY" customClass="ListViewController" customModule="MyToDoList" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="13n-vt-WS5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XSl-gu-8Gv">
+                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
+                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="XSl-gu-8Gv" firstAttribute="leading" secondItem="zwc-jJ-uf9" secondAttribute="leading" id="1pP-rG-siC"/>
+                            <constraint firstItem="XSl-gu-8Gv" firstAttribute="top" secondItem="zwc-jJ-uf9" secondAttribute="top" id="9Vs-xk-mFn"/>
+                            <constraint firstItem="zwc-jJ-uf9" firstAttribute="bottom" secondItem="XSl-gu-8Gv" secondAttribute="bottom" id="dXH-4b-wRb"/>
+                            <constraint firstItem="XSl-gu-8Gv" firstAttribute="trailing" secondItem="zwc-jJ-uf9" secondAttribute="trailing" id="k2W-uD-iBu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zwc-jJ-uf9"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="yFJ-4c-i39">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="uWR-N9-gOe"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="XSl-gu-8Gv" id="oC3-uQ-an5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pxB-4g-e48" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2989.8550724637685" y="112.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="BsO-sq-maZ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fdx-p5-5Es" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="qDn-De-NMT"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uGM-XJ-brT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="MCh-VC-agY" kind="relationship" relationship="rootViewController" id="gWa-a3-TvO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XZL-1m-gSi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2079.7101449275365" y="112.5"/>
         </scene>
     </scenes>
 </document>
