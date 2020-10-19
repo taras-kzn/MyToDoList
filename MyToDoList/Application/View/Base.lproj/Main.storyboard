@@ -67,6 +67,7 @@
                                                     <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 </state>
                                                 <connections>
+                                                    <action selector="loginTappedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tar-eo-ab8"/>
                                                     <segue destination="fdx-p5-5Es" kind="show" identifier="tasksSegue" id="x9m-LB-cl5"/>
                                                 </connections>
                                             </button>
@@ -76,6 +77,9 @@
                                                 <state key="normal" title="Register">
                                                     <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="registrTappedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JqE-sb-9VC"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -104,6 +108,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="sTD-RZ-RFB"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="Ud6-SA-9kS" id="bfl-aU-Mr8"/>
+                        <outlet property="passwordTextField" destination="Y3K-mu-wol" id="G0K-kT-7ZU"/>
+                        <outlet property="warnLabel" destination="OeG-mU-rqf" id="Ih2-Jy-Bza"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -133,7 +142,11 @@
                         <viewLayoutGuide key="safeArea" id="zwc-jJ-uf9"/>
                     </view>
                     <navigationItem key="navigationItem" id="yFJ-4c-i39">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="uWR-N9-gOe"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="uWR-N9-gOe">
+                            <connections>
+                                <action selector="addTapped:" destination="MCh-VC-agY" id="cvN-fF-xn3"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="XSl-gu-8Gv" id="oC3-uQ-an5"/>

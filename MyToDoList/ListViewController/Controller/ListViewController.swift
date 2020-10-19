@@ -11,14 +11,21 @@ import UIKit
 class ListViewController: UIViewController {
     //MARK: - IBOutlet
     @IBOutlet var tableView: UITableView!
+    
     //MARK: - Propertyes
     private let tableNibName = "ListTableViewCell"
-    //MARK: Life Cycle
+    
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         config()
     }
+    
+    //MARK: - IBAction
+    @IBAction func addTapped(_ sender: UIBarButtonItem) {
+    }
+    
     //MARK: - private functions
     private func config() {
         tableView.dataSource = self
@@ -29,6 +36,7 @@ class ListViewController: UIViewController {
 
     }
 }
+
 //MARK: - UITableViewDataSource
 extension ListViewController: UITableViewDataSource {
     
@@ -44,6 +52,7 @@ extension ListViewController: UITableViewDataSource {
         return cell
     }
 }
+
 //MARK: - UITableViewDelegate
 extension ListViewController: UITableViewDelegate {
     
