@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,7 +18,7 @@
 		840330C5253AF03500FE24CB /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840330C4253AF03500FE24CB /* ListViewController.swift */; };
 		840330CA253AF24800FE24CB /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840330C8253AF24800FE24CB /* ListTableViewCell.swift */; };
 		840330CB253AF24800FE24CB /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840330C9253AF24800FE24CB /* ListTableViewCell.xib */; };
-		840330CD253DB33000FE24CB /* GoogleService-Info (1).plist in Resources */ = {isa = PBXBuildFile; fileRef = 840330CC253DB33000FE24CB /* GoogleService-Info (1).plist */; };
+		840330D725404DA100FE24CB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 840330D625404DA100FE24CB /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +36,7 @@
 		840330C4253AF03500FE24CB /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		840330C8253AF24800FE24CB /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		840330C9253AF24800FE24CB /* ListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
-		840330CC253DB33000FE24CB /* GoogleService-Info (1).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info (1).plist"; sourceTree = "<group>"; };
+		840330D625404DA100FE24CB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C1B0AB3E6A68DE3070E7C651 /* Pods-MyToDoList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyToDoList.debug.xcconfig"; path = "Target Support Files/Pods-MyToDoList/Pods-MyToDoList.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,7 +122,7 @@
 			children = (
 				840330B1253ACAEF00FE24CB /* Assets.xcassets */,
 				840330B6253ACAEF00FE24CB /* Info.plist */,
-				840330CC253DB33000FE24CB /* GoogleService-Info (1).plist */,
+				840330D625404DA100FE24CB /* GoogleService-Info.plist */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -167,7 +167,6 @@
 				C1B0AB3E6A68DE3070E7C651 /* Pods-MyToDoList.debug.xcconfig */,
 				10166B2C96E0025742DD2675 /* Pods-MyToDoList.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -232,10 +231,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				840330BD253ACFA300FE24CB /* .gitignore in Resources */,
-				840330CD253DB33000FE24CB /* GoogleService-Info (1).plist in Resources */,
 				840330B5253ACAEF00FE24CB /* LaunchScreen.storyboard in Resources */,
 				840330B2253ACAEF00FE24CB /* Assets.xcassets in Resources */,
 				840330B0253ACAEA00FE24CB /* Main.storyboard in Resources */,
+				840330D725404DA100FE24CB /* GoogleService-Info.plist in Resources */,
 				840330CB253AF24800FE24CB /* ListTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -441,6 +440,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2PQ8675BM6;
 				INFOPLIST_FILE = "$(SRCROOT)/MyToDoList/Resource/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -460,6 +460,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2PQ8675BM6;
 				INFOPLIST_FILE = "$(SRCROOT)/MyToDoList/Resource/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
