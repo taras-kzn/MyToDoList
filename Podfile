@@ -7,5 +7,6 @@ target 'MyToDoList' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Core'
   pod 'Firebase/Database'
+  pod 'Firebase/Auth'
   
 end

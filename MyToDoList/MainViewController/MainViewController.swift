@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class MainViewController: UIViewController {
     //MARK: - IBOutlets
@@ -14,13 +15,12 @@ class MainViewController: UIViewController {
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var scrollView: UIScrollView!
-    
-    
-    
+
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configure()
         configureKeyBoard()
     }
     
@@ -34,6 +34,21 @@ class MainViewController: UIViewController {
         removeNotifications()
     }
     //MARK: - private functions
+    private func configure() {
+        scrollView.showsVerticalScrollIndicator = false
+        warnLabel.alpha = 0
+    }
+    
+    private func displayWarningLabel(withTetx text: String) {
+        warnLabel.text = text
+        
+        UIView.animate(withDuration: 3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseInOut, animations: { [weak self] in
+            self?.warnLabel.alpha = 1
+        }) { [weak self]complete in
+            self?.warnLabel.alpha = 0
+        }
+    }
+    
     private func addNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown), name: UIResponder.keyboardWillShowNotification, object: nil)
         
@@ -49,7 +64,6 @@ class MainViewController: UIViewController {
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         
         scrollView?.addGestureRecognizer(hideKeyboardGesture)
-        scrollView.showsVerticalScrollIndicator = false
     }
     
     @objc private func keyboardWasShown(notification: Notification) {
@@ -69,9 +83,13 @@ class MainViewController: UIViewController {
     @objc private func hideKeyboard() {
         scrollView?.endEditing(true)
     }
-    
     //MARK: - IBActions
     @IBAction func loginTappedButton(_ sender: UIButton) {
+        guard let email = emailTextField.text, let password = passwordTextField.text, email != "", password != "" else {
+            displayWarningLabel(withTetx: "информация не коректная ")
+            return
+        }
+        
     }
     @IBAction func registrTappedButton(_ sender: Any) {
     }
