@@ -15,6 +15,8 @@ class MainViewController: UIViewController {
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var scrollView: UIScrollView!
+    //MARK: - Propeties
+    private let segueID = "tasksSegue"
 
     //MARK: - Life Cycle
     override func viewDidLoad() {
@@ -27,6 +29,8 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         addNotifications()
+        emailTextField.text = ""
+        passwordTextField.text = ""
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -37,6 +41,12 @@ class MainViewController: UIViewController {
     private func configure() {
         scrollView.showsVerticalScrollIndicator = false
         warnLabel.alpha = 0
+        
+        Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
+            if user != nil {
+                self?.performSegue(withIdentifier: (self?.segueID)!, sender: nil)
+            }
+        }
     }
     
     private func displayWarningLabel(withTetx text: String) {
@@ -90,8 +100,38 @@ class MainViewController: UIViewController {
             return
         }
         
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self]  (user, error) in
+            if error != nil {
+                self?.displayWarningLabel(withTetx: "Error occured")
+                return
+            }
+            
+            if user != nil {
+                self?.performSegue(withIdentifier: (self?.segueID)!, sender: nil)
+                return
+            }
+            
+            self?.displayWarningLabel(withTetx: "нет такого пользавателя")
+        }
+        
     }
+    
     @IBAction func registrTappedButton(_ sender: Any) {
+        guard let email = emailTextField.text, let password = passwordTextField.text, email != "", password != "" else {
+            displayWarningLabel(withTetx: "информация не коректная ")
+            return
+        }
+        Auth.auth().createUser(withEmail: email, password: password) { [weak self] (user, error) in
+            if error == nil {
+                if user != nil {
+                } else {
+                    print("user is not created")
+                }
+            } else {
+                self?.displayWarningLabel(withTetx: "оишбка")
+                print(error?.localizedDescription)
+            }
+        }
     }
 }
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ListViewController: UIViewController {
     //MARK: - IBOutlet
@@ -24,6 +25,15 @@ class ListViewController: UIViewController {
     
     //MARK: - IBAction
     @IBAction func addTapped(_ sender: UIBarButtonItem) {
+    }
+    
+    @IBAction func signOutTapped(_ sender: UIBarButtonItem) {
+        do {
+           try Auth.auth().signOut()
+        } catch {
+            print(error.localizedDescription)
+        }
+        dismiss(animated: true, completion: nil)
     }
     
     //MARK: - private functions
