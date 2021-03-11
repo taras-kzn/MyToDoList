@@ -25,9 +25,26 @@ class ListViewController: UIViewController {
     
     //MARK: - IBAction
     @IBAction func addTapped(_ sender: UIBarButtonItem) {
+        
+        let alertController = UIAlertController(title: "New Task", message: "Add new task", preferredStyle: .alert)
+        alertController.addTextField()
+        let save = UIAlertAction(title: "Save", style: .default) { _ in
+            guard let textField = alertController.textFields?.first, textField.text != "" else {
+                return
+                //Суда можно добавить проверку и сообщение юзеру что вышла ошибка и т.д.
+            }
+            
+            //let task
+            //taskRef
+        }
+        let cancel = UIAlertAction.init(title: "Cancel", style: .default, handler: nil)
+        alertController.addAction(save)
+        alertController.addAction(cancel)
+        present(alertController, animated: true, completion: nil)
     }
     
     @IBAction func signOutTapped(_ sender: UIBarButtonItem) {
+        
         do {
            try Auth.auth().signOut()
         } catch {
