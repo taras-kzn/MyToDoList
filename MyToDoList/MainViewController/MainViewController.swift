@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class MainViewController: UIViewController {
     //MARK: - IBOutlets
@@ -14,19 +15,23 @@ class MainViewController: UIViewController {
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var scrollView: UIScrollView!
-    
-    
-    
+    //MARK: - Propeties
+    private let segueID = "tasksSegue"
+    var ref: DatabaseReference!
+
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configure()
         configureKeyBoard()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         addNotifications()
+        emailTextField.text = ""
+        passwordTextField.text = ""
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -34,6 +39,29 @@ class MainViewController: UIViewController {
         removeNotifications()
     }
     //MARK: - private functions
+    private func configure() {
+        scrollView.showsVerticalScrollIndicator = false
+        warnLabel.alpha = 0
+        
+        Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
+            if user != nil {
+                self?.performSegue(withIdentifier: (self?.segueID)!, sender: nil)
+            }
+        }
+        
+        ref = Database.database().reference(withPath: "users")
+    }
+    
+    private func displayWarningLabel(withTetx text: String) {
+        warnLabel.text = text
+        
+        UIView.animate(withDuration: 3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseInOut, animations: { [weak self] in
+            self?.warnLabel.alpha = 1
+        }) { [weak self]complete in
+            self?.warnLabel.alpha = 0
+        }
+    }
+    
     private func addNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown), name: UIResponder.keyboardWillShowNotification, object: nil)
         
@@ -49,7 +77,6 @@ class MainViewController: UIViewController {
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         
         scrollView?.addGestureRecognizer(hideKeyboardGesture)
-        scrollView.showsVerticalScrollIndicator = false
     }
     
     @objc private func keyboardWasShown(notification: Notification) {
@@ -69,11 +96,44 @@ class MainViewController: UIViewController {
     @objc private func hideKeyboard() {
         scrollView?.endEditing(true)
     }
-    
     //MARK: - IBActions
     @IBAction func loginTappedButton(_ sender: UIButton) {
+        guard let email = emailTextField.text, let password = passwordTextField.text, email != "", password != "" else {
+            displayWarningLabel(withTetx: "информация не коректная ")
+            return
+        }
+        
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self]  (user, error) in
+            if error != nil {
+                self?.displayWarningLabel(withTetx: "Error occured")
+                return
+            }
+            
+            if user != nil {
+                self?.performSegue(withIdentifier: (self?.segueID)!, sender: nil)
+                return
+            }
+            
+            self?.displayWarningLabel(withTetx: "нет такого пользавателя")
+        }
+        
     }
+    
     @IBAction func registrTappedButton(_ sender: Any) {
+        guard let email = emailTextField.text, let password = passwordTextField.text, email != "", password != "" else {
+            displayWarningLabel(withTetx: "информация не коректная ")
+            return
+        }
+        Auth.auth().createUser(withEmail: email, password: password) { [weak self] (user, error) in
+            
+            guard error == nil, user != nil else {
+                self?.displayWarningLabel(withTetx: "оишбка")
+                print(error!.localizedDescription)
+                return
+            }
+            let userRef = self?.ref.child((user?.user.uid)!)
+            userRef?.setValue(["email": user?.user.email])
+        }
     }
 }
 
