@@ -17,6 +17,7 @@ class MainViewController: UIViewController {
     @IBOutlet var scrollView: UIScrollView!
     //MARK: - Propeties
     private let segueID = "tasksSegue"
+    var ref: DatabaseReference!
 
     //MARK: - Life Cycle
     override func viewDidLoad() {
@@ -47,6 +48,8 @@ class MainViewController: UIViewController {
                 self?.performSegue(withIdentifier: (self?.segueID)!, sender: nil)
             }
         }
+        
+        ref = Database.database().reference(withPath: "users")
     }
     
     private func displayWarningLabel(withTetx text: String) {
@@ -122,15 +125,14 @@ class MainViewController: UIViewController {
             return
         }
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] (user, error) in
-            if error == nil {
-                if user != nil {
-                } else {
-                    print("user is not created")
-                }
-            } else {
+            
+            guard error == nil, user != nil else {
                 self?.displayWarningLabel(withTetx: "оишбка")
-                print(error?.localizedDescription)
+                print(error!.localizedDescription)
+                return
             }
+            let userRef = self?.ref.child((user?.user.uid)!)
+            userRef?.setValue(["email": user?.user.email])
         }
     }
 }
