@@ -26,6 +26,25 @@ class ListViewController: UIViewController {
         config()
         configUserDataBase()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        ref.observe(.value) { [weak self] (snapshot) in
+            var tasks = [Task]()
+            for item in snapshot.children {
+                let task = Task(snapshot: item as! DataSnapshot)
+                print("Вот это ошибка \(task.title)")
+                tasks.append(task)
+            }
+            self?.tasks = tasks
+            self?.tableView.reloadData()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        ref.removeAllObservers()
+    }
     
     //MARK: - IBAction
     @IBAction func addTapped(_ sender: UIBarButtonItem) {
@@ -37,12 +56,9 @@ class ListViewController: UIViewController {
                 return
                 //Суда можно добавить проверку и сообщение юзеру что вышла ошибка и т.д.
             }
-            print("Action userd this \(self?.user.uid)")
             let task = Task.init(title: textField.text!, userId: (self?.user.uid)!)
             let taskRef = self?.ref.child(task.title.lowercased())
             taskRef?.setValue(task.convertToDictionary())
-            //let task
-            //taskRef
         }
         let cancel = UIAlertAction.init(title: "Cancel", style: .default, handler: nil)
         alertController.addAction(save)
@@ -51,7 +67,6 @@ class ListViewController: UIViewController {
     }
     
     @IBAction func signOutTapped(_ sender: UIBarButtonItem) {
-        
         do {
            try Auth.auth().signOut()
         } catch {
@@ -72,7 +87,6 @@ class ListViewController: UIViewController {
     private func configUserDataBase() {
         guard let cuurentUser = Auth.auth().currentUser else { return }
         user = UserModel(user: cuurentUser)
-        let task = Task.init(title: "test", userId: user.uid)
         ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("tasks")
     }
 }
@@ -81,7 +95,7 @@ class ListViewController: UIViewController {
 extension ListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -89,6 +103,8 @@ extension ListViewController: UITableViewDataSource {
         guard let cell = listCell else {
             return UITableViewCell()
         }
+        let taskTitle = tasks[indexPath.row].title
+        cell.configure(title: taskTitle)
         return cell
     }
 }

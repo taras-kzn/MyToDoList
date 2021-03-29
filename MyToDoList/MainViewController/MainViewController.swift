@@ -61,7 +61,7 @@ class MainViewController: UIViewController {
             self?.warnLabel.alpha = 0
         }
     }
-    
+    //MARK: - func Notification
     private func addNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown), name: UIResponder.keyboardWillShowNotification, object: nil)
         
