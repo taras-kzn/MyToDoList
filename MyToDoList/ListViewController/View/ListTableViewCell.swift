@@ -14,8 +14,11 @@ class ListTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         backgroundColor = .clear
-        textLabel?.text = "это строка"
         textLabel?.textColor = .white
+    }
+    
+    func configure(title: String) {
+        textLabel?.text = title
     }
 }
 
