@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -32,15 +33,15 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="334" height="107"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ToDoList" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjk-ft-p9Z">
-                                                                        <rect key="frame" x="89" y="0.0" width="156.5" height="44.5"/>
+                                                                        <rect key="frame" x="90.5" y="0.0" width="153" height="44.5"/>
                                                                         <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="40"/>
-                                                                        <color key="textColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                        <color key="textColor" systemColor="systemBackgroundColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User does not exist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OeG-mU-rqf">
-                                                                        <rect key="frame" x="87" y="84.5" width="160" height="22.5"/>
+                                                                        <rect key="frame" x="85" y="84.5" width="164.5" height="22.5"/>
                                                                         <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="20"/>
-                                                                        <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="textColor" systemColor="systemRedColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
@@ -69,22 +70,22 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="udY-gG-NMJ">
                                                                 <rect key="frame" x="40" y="502" width="254" height="98"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7XG-Ff-dGv">
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7XG-Ff-dGv">
                                                                         <rect key="frame" x="0.0" y="0.0" width="254" height="39"/>
                                                                         <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="24"/>
                                                                         <state key="normal" title="Login">
-                                                                            <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                            <color key="titleColor" systemColor="systemBackgroundColor"/>
                                                                         </state>
                                                                         <connections>
                                                                             <action selector="loginTappedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tar-eo-ab8"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pz7-Fs-pN0">
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pz7-Fs-pN0">
                                                                         <rect key="frame" x="0.0" y="59" width="254" height="39"/>
                                                                         <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="24"/>
                                                                         <state key="normal" title="Register">
-                                                                            <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                            <color key="titleColor" systemColor="systemBackgroundColor"/>
                                                                         </state>
                                                                         <connections>
                                                                             <action selector="registrTappedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JqE-sb-9VC"/>
@@ -135,18 +136,19 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="5WH-cv-SxU"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemTealColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="yXS-RJ-kyX" secondAttribute="bottom" id="TAG-EL-i71"/>
                             <constraint firstItem="yXS-RJ-kyX" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="mJA-6T-lck"/>
                             <constraint firstItem="yXS-RJ-kyX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="skb-TL-nJz"/>
                             <constraint firstItem="yXS-RJ-kyX" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="44" id="z96-cA-5xm"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="sTD-RZ-RFB"/>
                     <connections>
                         <outlet property="emailTextField" destination="Ud6-SA-9kS" id="bfl-aU-Mr8"/>
+                        <outlet property="loginLabel" destination="7XG-Ff-dGv" id="e1x-O3-M3f"/>
                         <outlet property="passwordTextField" destination="Y3K-mu-wol" id="G0K-kT-7ZU"/>
                         <outlet property="scrollView" destination="yXS-RJ-kyX" id="Orc-0J-EYx"/>
                         <outlet property="warnLabel" destination="OeG-mU-rqf" id="Ih2-Jy-Bza"/>
@@ -167,18 +169,18 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XSl-gu-8Gv">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemTealColor"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="zwc-jJ-uf9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="XSl-gu-8Gv" firstAttribute="leading" secondItem="zwc-jJ-uf9" secondAttribute="leading" id="1pP-rG-siC"/>
                             <constraint firstItem="XSl-gu-8Gv" firstAttribute="top" secondItem="zwc-jJ-uf9" secondAttribute="top" id="9Vs-xk-mFn"/>
                             <constraint firstItem="zwc-jJ-uf9" firstAttribute="bottom" secondItem="XSl-gu-8Gv" secondAttribute="bottom" id="dXH-4b-wRb"/>
                             <constraint firstItem="XSl-gu-8Gv" firstAttribute="trailing" secondItem="zwc-jJ-uf9" secondAttribute="trailing" id="k2W-uD-iBu"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="zwc-jJ-uf9"/>
                     </view>
                     <navigationItem key="navigationItem" id="yFJ-4c-i39">
                         <barButtonItem key="leftBarButtonItem" title="Sign Out" id="LjO-Ew-cr1">
@@ -220,4 +222,15 @@
             <point key="canvasLocation" x="4084.057971014493" y="124.55357142857142"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>
