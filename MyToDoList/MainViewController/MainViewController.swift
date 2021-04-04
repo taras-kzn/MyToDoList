@@ -12,6 +12,7 @@ import Firebase
 class MainViewController: UIViewController {
     //MARK: - IBOutlets
     @IBOutlet var warnLabel: UILabel!
+    @IBOutlet var loginLabel: UIButton!
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var scrollView: UIScrollView!
@@ -41,6 +42,10 @@ class MainViewController: UIViewController {
     //MARK: - private functions
     private func configure() {
         scrollView.showsVerticalScrollIndicator = false
+        passwordTextField.delegate = self
+        emailTextField.delegate = self
+        loginLabel.layer.cornerRadius = loginLabel.frame.width / 20
+        loginLabel.layer.masksToBounds = true
         warnLabel.alpha = 0
         
         Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
@@ -96,6 +101,7 @@ class MainViewController: UIViewController {
     @objc private func hideKeyboard() {
         scrollView?.endEditing(true)
     }
+    
     //MARK: - IBActions
     @IBAction func loginTappedButton(_ sender: UIButton) {
         guard let email = emailTextField.text, let password = passwordTextField.text, email != "", password != "" else {
@@ -134,6 +140,21 @@ class MainViewController: UIViewController {
             let userRef = self?.ref.child((user?.user.uid)!)
             userRef?.setValue(["email": user?.user.email])
         }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        scrollView?.endEditing(true)
+        print("tap")
+        return true
+    }
+}
+
+extension MainViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 

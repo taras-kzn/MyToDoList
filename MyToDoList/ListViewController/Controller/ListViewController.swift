@@ -33,7 +33,6 @@ class ListViewController: UIViewController {
             var tasks = [Task]()
             for item in snapshot.children {
                 let task = Task(snapshot: item as! DataSnapshot)
-                print("Вот это ошибка \(task.title)")
                 tasks.append(task)
             }
             self?.tasks = tasks
@@ -89,10 +88,14 @@ class ListViewController: UIViewController {
         user = UserModel(user: cuurentUser)
         ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("tasks")
     }
+    
+    private func checkmarkComletion(_ cell: UITableViewCell, isCompleted: Bool) {
+        cell.accessoryType = isCompleted ? .checkmark : .none
+    }
 }
 
-//MARK: - UITableViewDataSource
-extension ListViewController: UITableViewDataSource {
+//MARK: - UITableViewDataSource UITableViewDelegate
+extension ListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks.count
@@ -103,13 +106,31 @@ extension ListViewController: UITableViewDataSource {
         guard let cell = listCell else {
             return UITableViewCell()
         }
-        let taskTitle = tasks[indexPath.row].title
+        let task = tasks[indexPath.row]
+        let taskTitle = task.title
+        let taskCompleted = task.completed
         cell.configure(title: taskTitle)
+        checkmarkComletion(cell, isCompleted: taskCompleted)
         return cell
     }
-}
-
-//MARK: - UITableViewDelegate
-extension ListViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let task = tasks[indexPath.row]
+            task.ref?.removeValue()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+        let task = tasks[indexPath.row]
+        let isCompleted = !task.completed
+        
+        checkmarkComletion(cell, isCompleted: isCompleted)
+        task.ref?.updateChildValues(["completed" : isCompleted])
+    }
 }
